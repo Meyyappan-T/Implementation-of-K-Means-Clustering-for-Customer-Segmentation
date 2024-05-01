@@ -1,75 +1,68 @@
-# Implementation-of-K-Means-Clustering-for-Customer-Segmentation
+# Implementation-of-Decision-Tree-Classifier-Model-for-Predicting-Employee-Churn
 
 ## AIM:
-To write a program to implement the K Means Clustering for Customer Segmentation.
+To write a program to implement the Decision Tree Classifier Model for Predicting Employee Churn.
 
 ## Equipments Required:
 1. Hardware – PCs
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-#### Step 1. Start
-#### Step 2. Intialization and Assigning data points to clusters
-#### Step 3. Update centroids
-#### Step 4. Repeat
-#### Step 5. Output
-#### Step6. Stop
+1. Load the Dataset
+2. Preprocess the Data
+3. Split the Data
+4. Build and Train the Model
+5.Evaluate the Model
+6.Predict New Data
 
 ## Program:
 ```
 import pandas as pd
-import matplotlib.pyplot as plt
-data = pd.read_csv("D:/introduction to ML/jupyter notebooks/Mall_Customers.csv")
-
+data = pd.read_csv("D:/introduction to ML/jupyter notebooks/mama/Employee.csv")
 data.head()
 data.info()
 data.isnull().sum()
+data['left'].value_counts()
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+data['salary'] = le.fit_transform(data['salary'])
+data.head()
+y = data['left']
+y.head()
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state = 100)
+from sklearn.tree import DecisionTreeClassifier
+dt = DecisionTreeClassifier(criterion = 'entropy')
+dt.fit(x_train,y_train)
+y_predict = dt.predict(x_test)
+from sklearn import metrics
+accuracy = metrics.accuracy_score(y_test,y_predict)
+accuracy
+dt.predict([[0.5,0.8,9,260,6,0,1,2]])
 
-from sklearn.cluster import KMeans
-wcss = []
-for i in range(1,11):
-    kmeans = KMeans(n_clusters = i,init = "k-means++")
-    kmeans.fit(data.iloc[:,3:]) 
-    wcss.append(kmeans.inertia_)
-plt.plot(range(1,11),wcss)
-plt.xlabel("No. of clusters")
-plt.ylabel("wcss")
-plt.title("Elbow Method")
-```
-```
-km = KMeans(n_clusters = 5)
-km.fit(data.iloc[:,3:])
-y_pred = km.predict(data.iloc[:,3:])
-data["cluster"] = y_pred
-df0 = data[data["cluster"]==0]
-df1 = data[data["cluster"]==1]
-df2 = data[data["cluster"]==2]
-df3 = data[data["cluster"]==3]
-df4 = data[data["cluster"]==4]
-plt.scatter(df0["Annual Income (k$)"],df0["Spending Score (1-100)"],c="red",label = "cluster0")
-plt.scatter(df1["Annual Income (k$)"], df1["Spending Score (1-100)"], c="blue", label="cluster1")
-plt.scatter(df2["Annual Income (k$)"], df2["Spending Score (1-100)"], c="green", label="cluster2")
-plt.scatter(df3["Annual Income (k$)"], df3["Spending Score (1-100)"], c="purple", label="cluster3")
-plt.scatter(df4["Annual Income (k$)"], df4["Spending Score (1-100)"], c="orange", label="cluster4")
-
-plt.legend()
-plt.title("Customer Segments")
-plt.show()
 /*
-Program to implement the K Means Clustering for Customer Segmentation.
+Program to implement the the Logistic Regression Using Gradient Descent.
 Developed by: Meyyappan T
 RegisterNumber:  212223240086
 */
 ```
-
 ## Output:
-### Plotting graph for elbow method:
-![image](https://github.com/arbasil05/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/144218037/aa5eac9a-2336-4c29-8681-019d03a473b4)
-### Predicting and plotting graph for the clusters:
-![image](https://github.com/arbasil05/Implementation-of-K-Means-Clustering-for-Customer-Segmentation/assets/144218037/4b4f73ab-5ec9-43e8-9645-22965cdbf6b8)
+### Data.head():
+![image](https://github.com/arbasil05/-Implementation-of-Logistic-Regression-Using-Gradient-Descent/assets/144218037/a0894abd-5425-4f4e-a8a5-afe6d8f06ab3)
+### Data.info() and Data.isnull().sum():
+![image](https://github.com/arbasil05/-Implementation-of-Logistic-Regression-Using-Gradient-Descent/assets/144218037/2d1870be-45ae-4072-94f2-457bd3fc7f8c)
+![image](https://github.com/arbasil05/-Implementation-of-Logistic-Regression-Using-Gradient-Descent/assets/144218037/cecd03aa-658d-4df6-b82f-8a1ef4ea0980)
 
+![image](https://github.com/arbasil05/-Implementation-of-Logistic-Regression-Using-Gradient-Descent/assets/144218037/e0a14a4c-97b2-40e8-a8a9-fb19c107dd82)
 
+### Label Encoder :
+![image](https://github.com/arbasil05/-Implementation-of-Logistic-Regression-Using-Gradient-Descent/assets/144218037/4119b636-8467-4173-867b-a83dec66b243)
 
-
+### y.head():
+![image](https://github.com/arbasil05/-Implementation-of-Logistic-Regression-Using-Gradient-Descent/assets/144218037/0f00de90-8207-4a28-ac3c-bb47057ae205)
+### Accuracy:
+![image](https://github.com/arbasil05/-Implementation-of-Logistic-Regression-Using-Gradient-Descent/assets/144218037/e1c1c5e3-9abd-4b70-ba69-af128b8e87d8)
+### Prediction:
+![image](https://github.com/arbasil05/-Implementation-of-Logistic-Regression-Using-Gradient-Descent/assets/144218037/20d0366c-a7f9-4027-8976-733d7214b398)
 ## Result:
-Thus the program to implement the K Means Clustering for Customer Segmentation is written and verified using python programming.
+Thus the program to implement the  Decision Tree Classifier Model for Predicting Employee Churn is written and verified using python programming.
