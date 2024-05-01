@@ -13,6 +13,7 @@ To write a program to implement the K Means Clustering for Customer Segmentation
 #### Step 3. Update centroids
 #### Step 4. Repeat
 #### Step 5. Output
+#### Step6. Stop
 
 ## Program:
 ```
